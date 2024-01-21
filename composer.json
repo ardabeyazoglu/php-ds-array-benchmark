@@ -1,0 +1,19 @@
+{
+    "name": "ardabeyazoglu/php-ds-array-benchmark",
+    "require": {
+        "phpbench/phpbench": "^1.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PhpDsArrayBenchmark\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Arda Beyazoglu",
+            "email": "arda@beyazoglu.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
