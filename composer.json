@@ -9,11 +9,20 @@
             "PhpDsArrayBenchmark\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpDsArrayBenchmark\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Arda Beyazoglu",
             "email": "arda@beyazoglu.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "php": "^8.2",
+        "phpunit/phpunit": "^11.0"
+    }
 }
