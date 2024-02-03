@@ -14,7 +14,7 @@ use Ds\Deque;
  * @BeforeMethods({"init"})
  * @AfterMethods({"tearDown"})
  * @Iterations(5)
- * @Revs(10)
+ * @Revs(50)
  * @OutputTimeUnit("milliseconds", precision=3)
  */
 class ArrayBench
@@ -70,13 +70,13 @@ class ArrayBench
             $i = 0;
             foreach ($values as $col => $value) {
                 $row["cells"][$i++] = [
-                    "c" => 2,
-                    "r" => 4,
-                    "c" => $col,
-                    "v" => $value,
-                    "s" => [
-                        "c" => "red",
-                        "b" => false
+                    "colspan" => 2,
+                    "rowspan" => 4,
+                    "column" => $col,
+                    "value" => $value,
+                    "styles" => [
+                        "color" => "red",
+                        "bold" => false
                     ],
                 ];
             }
@@ -97,13 +97,13 @@ class ArrayBench
             $row["cells"]->allocate($this->colCount);
             foreach ($values as $col => $value) {
                 $row["cells"]->push([
-                    "c" => 2,
-                    "r" => 4,
-                    "c" => $col,
-                    "v" => $value,
-                    "s" => [
-                        "c" => "red",
-                        "b" => false
+                    "colspan" => 2,
+                    "rowspan" => 4,
+                    "column" => $col,
+                    "value" => $value,
+                    "styles" => [
+                        "color" => "red",
+                        "bold" => false
                     ],
                 ]);
             }

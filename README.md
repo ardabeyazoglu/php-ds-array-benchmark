@@ -1,10 +1,10 @@
 # php-ds-array-benchmark
 
-A playground for benchmarking php-ds vector and native array
+A synthetic benchmark comparison between native Array, SplFixedArray and Deque/Vector from php-ds.
 
 # Usage
 
-	./vendor/bin/phpbench run tests/Benchmark --file=report-default.xml --report=default
-	./vendor/bin/phpbench run tests/Benchmark --file=report-aggregate.xml --report=aggregate
+	./vendor/bin/phpbench run tests/Benchmark --report=default
+	./vendor/bin/phpbench run tests/Benchmark --report=aggregate
 	
 
