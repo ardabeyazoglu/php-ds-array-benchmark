@@ -27,5 +27,5 @@ A php8.2 benchmark comparison between native **Array**, **SplFixedArray** and **
 # Conclusion
 
 - **Native array is the best data structure for lists, and outperforms the other methods in both time complexity and overall resource usage.**
-- SplFixedArray is simply garbage for php8. It has no value over array in any way.
-- DataStructures extension was once a great improvement for php7, but so much anymore, at least for simple lists. Certain things can be still much more efficient with [php-ds](https://medium.com/@rtheunissen/efficient-data-structures-for-php-7-9dda7af674cd).
+- SplFixedArray is simply unnecessary. It has no real value over array.
+- DataStructures extension was once a great improvement for php7, but not so much anymore, at least for simple lists. Certain data structure manipulations can be still more efficient with [php-ds](https://medium.com/@rtheunissen/efficient-data-structures-for-php-7-9dda7af674cd).
