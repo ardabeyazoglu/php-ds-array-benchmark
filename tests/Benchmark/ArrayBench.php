@@ -8,13 +8,13 @@ use PhpBench\Benchmark\Metadata\Annotations\Iterations;
 use PhpBench\Benchmark\Metadata\Annotations\Revs;
 use PhpBench\Benchmark\Metadata\Annotations\OutputTimeUnit;
 use SplFixedArray;
-use Ds\Deque;
+use Ds\Vector;
 
 /**
  * @BeforeMethods({"init"})
  * @AfterMethods({"tearDown"})
- * @Iterations(5)
- * @Revs(50)
+ * @Iterations(3)
+ * @Revs(10)
  * @OutputTimeUnit("milliseconds", precision=3)
  */
 class ArrayBench
@@ -25,7 +25,8 @@ class ArrayBench
 
     public function init()
     {
-        $this->data = require_once("data/sample_data.php");
+        $data = require("data/sample_data.php");
+        $this->data = array_merge($data, $data, $data, $data, $data, $data, $data, $data);
         $this->colCount = count($this->data[0]);
         $this->count = count($this->data);
     }
@@ -39,11 +40,9 @@ class ArrayBench
     {
         $data = [];
         foreach ($this->data as $values) {
-            $row = [
-                "cells" => []
-            ];
+            $cells = [];
             foreach ($values as $col => $value) {
-                $row["cells"][] = [
+                $cells[] = [
                     "colspan" => 2,
                     "rowspan" => 4,
                     "column" => $col,
@@ -54,9 +53,10 @@ class ArrayBench
                     ],
                 ];
             }
-            $data[] = $row;
+            $data[] = $cells;
         }
 
+        //return $data;
         return json_encode($data);
     }
 
@@ -64,12 +64,10 @@ class ArrayBench
     {
         $data = new SplFixedArray($this->count);
         foreach ($this->data as $key => $values) {
-            $row = [
-                "cells" => new SplFixedArray($this->colCount)
-            ];
+            $cells = new SplFixedArray($this->colCount);
             $i = 0;
             foreach ($values as $col => $value) {
-                $row["cells"][$i++] = [
+                $cells[$i++] = [
                     "colspan" => 2,
                     "rowspan" => 4,
                     "column" => $col,
@@ -80,23 +78,23 @@ class ArrayBench
                     ],
                 ];
             }
-            $data[$key] = $row;
+            $data[$key] = $cells;
         }
 
+        //return $data;
         return json_encode($data);
     }
 
     public function benchDsVector()
     {
-        $data = new Deque();
+        $data = new Vector();
         $data->allocate($this->count);
         foreach ($this->data as $values) {
-            $row = [
-                "cells" => new Deque()
-            ];
-            $row["cells"]->allocate($this->colCount);
+            $cells = new Vector();
+            $cells->allocate($this->colCount);
+
             foreach ($values as $col => $value) {
-                $row["cells"]->push([
+                $cells->push([
                     "colspan" => 2,
                     "rowspan" => 4,
                     "column" => $col,
@@ -107,9 +105,10 @@ class ArrayBench
                     ],
                 ]);
             }
-            $data->push($row);
+            $data->push($cells);
         }
         
+        //return $data;
         return json_encode($data);
     }
 
